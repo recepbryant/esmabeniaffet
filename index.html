@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affet Beni 🎀😭</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #b3e0ff, #e6f0ff);
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+        h1 {
+            font-size: 2.8em;
+            color: #4da8da;
+            margin-bottom: 20px;
+            font-weight: 500;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        .buttons {
+            display: flex;
+            gap: 20px;
+            animation: bounceIn 1s ease-out;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+        }
+        #yesButton {
+            background-color: #4da8da;
+            color: white;
+            box-shadow: 0 4px 15px rgba(77, 168, 218, 0.4);
+        }
+        #yesButton:hover {
+            transform: scale(1.1);
+        }
+        #noButton {
+            background-color: #b3d4e9;
+            color: #4da8da;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(179, 212, 233, 0.4);
+        }
+        #noButton:hover {
+            transform: scale(1.05);
+        }
+        #response {
+            margin-top: 20px;
+            font-size: 2em;
+            color: #4da8da;
+            display: none;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            animation: slideUp 1s ease-out;
+        }
+        .heart {
+            position: absolute;
+            font-size: 1.5em;
+            color: #4da8da;
+            animation: fly 2s linear forwards, rotate 1.5s ease-in-out;
+        }
+        .sparkle {
+            position: absolute;
+            font-size: 1em;
+            color: #b3d4e9;
+            animation: twinkle 1.5s infinite;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        @keyframes fly {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
+        @keyframes slideUp {
+            0% { transform: translateY(20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Affet Beni 🎀😭</h1>
+    <div class="buttons">
+        <button id="yesButton">Evet</button>
+        <button id="noButton">Hayır</button>
+    </div>
+    <div id="response">Teşekkür ederim recep bryant artık çok mutlu</div>
+
+    <script>
+        const yesButton = document.getElementById('yesButton');
+        const noButton = document.getElementById('noButton');
+        const response = document.getElementById('response');
+
+        yesButton.addEventListener('click', () => {
+            response.style.display = 'block';
+            noButton.style.display = 'none';
+            yesButton.style.display = 'none';
+            createHeartsAndSparks();
+        });
+
+        noButton.addEventListener('click', () => {
+            const maxX = window.innerWidth - noButton.offsetWidth;
+            const maxY = window.innerHeight - noButton.offsetHeight;
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            noButton.style.position = 'absolute';
+            noButton.style.left = `${randomX}px`;
+            noButton.style.top = `${randomY}px`;
+            noButton.style.transform = 'scale(1.1)';
+            setTimeout(() => noButton.style.transform = 'scale(1)', 200);
+        });
+
+        function createHeartsAndSparks() {
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '💙';
+                heart.className = 'heart';
+                heart.style.left = Math.random() * 80 + 10 + 'vw';
+                heart.style.animationDelay = Math.random() * 0.5 + 's';
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 2000);
+
+                const sparkle = document.createElement('div');
+                sparkle.innerHTML = '✨';
+                sparkle.className = 'sparkle';
+                sparkle.style.left = Math.random() * 90 + 5 + 'vw';
+                sparkle.style.top = Math.random() * 90 + 5 + 'vh';
+                document.body.appendChild(sparkle);
+                setTimeout(() => sparkle.remove(), 1500);
+            }
+        }
+    </script>
+</body>
+</html>
